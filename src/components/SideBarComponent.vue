@@ -1,5 +1,5 @@
 <template>
-    <div class="sidebar toggled">
+    <div :class="['sidebar', { toggled }]">
         <div class="header">
             Header
         </div>
@@ -16,11 +16,17 @@
 
 <script>
 export default {
-    name: 'SideBarComponent'
+    name: 'SideBarComponent',
+    props: {
+        toggled: {
+            type: Boolean,
+            default: true
+        }
+    }
 }
 </script>
 
-<style scoped>
+<style>
 .sidebar {
     display: flex;
     flex-direction: column;
@@ -29,16 +35,31 @@ export default {
     height: 100%;
     max-height: 100vh;
     transition: 0.5s ease;
+    box-shadow: 3px 50px 5px -1px rgba(0,0,0,0.20);
+    -webkit-box-shadow: 3px 50px 5px -1px rgba(0,0,0,0.20);
+    -moz-box-shadow: 3px 50px 5px -1px rgba(0,0,0,0.20);
+    position: relative;
+    z-index: 100;
+    background-color: white;
 }
 .sidebar.toggled {
     max-width: 250px;
 }
 
 .sidebar .header {
-    height: 100%;
+    height: 50px;
+    opacity: 0;
     max-height: 90px;
-    padding: 1rem;
+    padding: 0;
+    overflow: hidden;
+    border-bottom: 1px solid lightgray;
+    transition: 0.5s ease;
 }
+.sidebar.toggled .header {
+    height: 100%;
+    opacity: 1;
+    padding: 1rem;
+} 
 
 .sidebar .body {
     flex-grow: 1;
@@ -47,8 +68,16 @@ export default {
 }
 
 .sidebar .footer {
-    height: 100%;
+    height: 0%;
+    opacity: 0;
     max-height: 70px;
     padding: 1rem;
+    overflow: hidden;
+    transition: 0.5s ease;
+    border-top: 1px solid lightgray;
+}
+.sidebar.toggled .footer {
+    height: 100%;
+    opacity: 1;
 }
 </style>

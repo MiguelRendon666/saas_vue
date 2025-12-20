@@ -1,6 +1,6 @@
 <template>
     <div class="ViewContainer">
-        <TopBarComponent />
+        <TopBarComponent @toggle-sidebar="$emit('toggle-sidebar')" />
         <div class="ComponentContainer">
             <div v-for="i in 200" :key="i">body {{ i }}</div>
         </div>
@@ -14,7 +14,8 @@ export default {
     name: 'ComponentContainerComponent',
     components: {
         TopBarComponent
-    }
+    },
+    emits: ['toggle-sidebar']
 }
 </script>
 
@@ -25,6 +26,8 @@ export default {
     width: 100%;
     height: 100%;
     max-height: 100vh;
+    position: relative;
+    z-index: 1;
 }
 .ComponentContainer {
     width: 100%;

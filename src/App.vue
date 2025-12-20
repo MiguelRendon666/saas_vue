@@ -1,14 +1,20 @@
 <template>
   <div class="app-container">
-    <SideBarComponent />
-    <ComponentContainerComponent />
+    <SideBarComponent :toggled="toggled" />
+    <ComponentContainerComponent @toggle-sidebar="handleToggleSidebar" />
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
+import { ref } from 'vue';
 import ComponentContainerComponent from './components/ComponentContainerComponent.vue';
 import SideBarComponent from './components/SideBarComponent.vue';
 
+const toggled = ref(true);
+
+const handleToggleSidebar = () => {
+  toggled.value = !toggled.value;
+};
 </script>
 
 <style scoped>
