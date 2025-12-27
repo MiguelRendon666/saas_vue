@@ -5,7 +5,12 @@
         </div>
 
         <div class="body">
-        <SideBarItemComponent v-for="module in MODULES" :active="false" :module="module"/>
+        <SideBarItemComponent 
+        v-for="module in MODULES" 
+        :active="false" 
+        :module="module"
+        @changeViewSignal="handleChangeView"
+        />
         </div>
 
         <div class="footer">
@@ -15,6 +20,7 @@
 </template>
 
 <script lang="ts">
+import { Module } from '@/models/module';
 import SideBarItemComponent from './SideBarItemComponent.vue';
 import { MODULES } from '@/constants/modules';
 
@@ -23,10 +29,16 @@ export default {
     components: {
         SideBarItemComponent
     },
+    signals: ['changeViewSignal'],
     props: {
         toggled: {
             type: Boolean,
             default: true
+        }
+    },
+    methods: {
+        handleChangeView(module: Module) {
+            this.$emit('changeViewSignal', module);
         }
     },
     data() {

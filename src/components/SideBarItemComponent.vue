@@ -1,5 +1,5 @@
 <template>
-<div class="side-bar-item">
+<div class="side-bar-item" @click="setNewView">
     <div class="icon">
         <img :src="module.icon" alt="">
     </div>
@@ -12,6 +12,7 @@ import { Module } from '@/models/module';
 
 export default {
     name: 'SideBarItemComponent',
+    signals: ['changeViewSignal'],
     props: {
         active: {
             type: Boolean,
@@ -21,7 +22,12 @@ export default {
             type: Object as () => Module,
             required: true
         }
-    }
+    },
+    methods: {
+        setNewView() {
+            this.$emit('changeViewSignal', this.module);
+        }
+    },
 }
 </script>
 
@@ -30,6 +36,7 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: center;
+    transition: 0.4s ease;
 }
 .side-bar-item:hover {
     background-color: #f0f0f0;

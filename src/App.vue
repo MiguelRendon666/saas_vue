@@ -1,11 +1,14 @@
 <template>
   <div class="app-container">
-    <SideBarComponent :toggled="toggled" />
+    <SideBarComponent 
+    :toggled="toggled"
+    @changeViewSignal="(module) => console.log('View changed to:', module.nombre)"
+     />
     <ComponentContainerComponent @toggle-sidebar="handleToggleSidebar" />
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import ComponentContainerComponent from './components/ComponentContainerComponent.vue';
 import SideBarComponent from './components/SideBarComponent.vue';
