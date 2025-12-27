@@ -1,17 +1,23 @@
 <template>
     <div class="topbar">
         <div class="top-left-side">
-            <button @click="toggleSidebar">=</button>
-            TopBar
+            <button @click="toggleSidebar" class="push-side-nav-button">
+                <img :src="ICONS.MENU" alt="">
+            </button>
+            <span>TopBar</span>
         </div>
         <div class="top-right-side">
-            <div class="avatar"></div>
+            <button>
+                <img :src="ICONS.AVATAR" alt="">
+            </button>
             Chango
         </div>
     </div>
 </template>
 
 <script>
+import ICONS from '@/constants/icons';
+
 export default {
     name: 'TopBarComponent',
     emits: ['toggle-sidebar'],
@@ -21,6 +27,11 @@ export default {
         },
         logout() {
             console.log('Logout clicked');
+        }
+    },
+    data() {
+        return {
+            ICONS
         }
     }
 }
@@ -38,5 +49,27 @@ export default {
     -moz-box-shadow: -1px 1px 5px -1px rgba(0,0,0,0.24);
     position: relative;
     z-index: 1;
+}
+.topbar .push-side-nav-button {
+    aspect-ratio: 1 / 1;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    border-radius: 100%;
+    padding: 0 !important;
+}
+.topbar .push-side-nav-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.topbar .push-side-nav-button img {
+    height: 100%;
+}
+
+.topbar .top-left-side {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
 }
 </style>

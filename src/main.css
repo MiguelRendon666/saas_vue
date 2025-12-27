@@ -24,3 +24,10 @@ body, html {
 ::-webkit-scrollbar-button {
     display: none;
 }
+
+button {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}

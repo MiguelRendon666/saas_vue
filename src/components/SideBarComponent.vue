@@ -5,7 +5,7 @@
         </div>
 
         <div class="body">
-        <div v-for="i in 10" :key="i">body {{ i }}</div>
+        <SideBarItemComponent v-for="module in MODULES" :active="false" :module="module"/>
         </div>
 
         <div class="footer">
@@ -14,13 +14,24 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
+import SideBarItemComponent from './SideBarItemComponent.vue';
+import { MODULES } from '@/constants/modules';
+
 export default {
     name: 'SideBarComponent',
+    components: {
+        SideBarItemComponent
+    },
     props: {
         toggled: {
             type: Boolean,
             default: true
+        }
+    },
+    data() {
+        return {
+            MODULES
         }
     }
 }
@@ -41,6 +52,7 @@ export default {
     position: relative;
     z-index: 100;
     background-color: white;
+    overflow: hidden;
 }
 .sidebar.toggled {
     max-width: 250px;
@@ -65,6 +77,7 @@ export default {
     flex-grow: 1;
     max-height: calc(100vh - 160px);
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .sidebar .footer {
