@@ -1,13 +1,13 @@
 <template>
     <div class="topbar">
         <div class="top-left-side">
-            <button @click="toggleSidebar" class="push-side-nav-button">
+            <button @click="toggleSidebar" :class="'push-side-nav-button' + (toggled_bar ? ' toggled' : '')">
                 <img :src="ICONS.MENU" alt="">
             </button>
             <span>TopBar</span>
         </div>
         <div class="top-right-side">
-            <button>
+            <button :class="'profile_button' + (toggled_profile ? ' toggled' : '')">
                 <img :src="ICONS.AVATAR" alt="">
             </button>
             Chango
@@ -24,6 +24,7 @@ export default {
     methods: {
         toggleSidebar() {
             this.$emit('toggle-sidebar');
+            this.toggled_bar = !this.toggled_bar;
         },
         logout() {
             console.log('Logout clicked');
@@ -31,7 +32,9 @@ export default {
     },
     data() {
         return {
-            ICONS
+            ICONS,
+            toggled_bar : false,
+            toggled_profile : false,
         }
     }
 }
@@ -50,24 +53,40 @@ export default {
     position: relative;
     z-index: 1;
 }
-.topbar .push-side-nav-button {
+.topbar .push-side-nav-button,
+.topbar .profile_button {
     aspect-ratio: 1 / 1;
     height: 100%;
     border: none;
-    background-color: transparent;
     border-radius: 100%;
     padding: 0 !important;
 }
-.topbar .push-side-nav-button:hover {
+.topbar .push-side-nav-button:hover,
+.topbar .profile_button:hover {
     background-color: rgba(0, 0, 0, 0.05);
 }
-.topbar .push-side-nav-button img {
+.topbar .push-side-nav-button img,
+.topbar .profile_button img {
     height: 100%;
+    transition: 0.5s ease;
+}
+
+.topbar .push-side-nav-button.toggled img,
+.topbar .profile_button.toggled img {
+    filter: grayscale(100%) brightness(1.3);
 }
 
 .topbar .top-left-side {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.topbar .top-right-side {
+    display: flex;
+    flex-direction: row-reverse;
     align-items: center;
     gap: 10px;
     font-weight: bold;

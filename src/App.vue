@@ -2,9 +2,11 @@
   <div class="app-container">
     <SideBarComponent 
     :toggled="toggled"
-    @changeViewSignal="(module: Module) => console.log('View changed to:', module.nombre)"
+    @changeViewSignal="handleChangeView"
      />
-    <ComponentContainerComponent @toggle-sidebar="handleToggleSidebar" />
+    <ComponentContainerComponent 
+    ref="ComponentContainer"
+    @toggle-sidebar="handleToggleSidebar" />
   </div>
 </template>
 
@@ -16,8 +18,15 @@ import type { Module } from './models/module';
 
 const toggled = ref(true);
 
+const componentContainer = ref<InstanceType<typeof ComponentContainerComponent> | null>(null);
+
 const handleToggleSidebar = () => {
   toggled.value = !toggled.value;
+};
+
+const handleChangeView = (module: Module) => {
+  console.log(componentContainer);
+  componentContainer.value?.ChangeView(module);
 };
 </script>
 

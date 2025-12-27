@@ -7,15 +7,21 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import TopBarComponent from './TopBarComponent.vue';
+import { Module } from '@/models/module';
 
 export default {
     name: 'ComponentContainerComponent',
     components: {
         TopBarComponent
     },
-    emits: ['toggle-sidebar']
+    emits: ['toggle-sidebar'],
+    methods: {
+        ChangeView(module : Module) {
+            console.log('View changed to:', module.nombre);
+        },
+    },
 }
 </script>
 
