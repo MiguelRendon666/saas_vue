@@ -22,7 +22,7 @@ export default {
         font-size: 1.5rem;
         top: 50px;
         z-index: 99999;
-        background-color: rgba(184, 135, 135, 0.5);
+        background-color: rgba(184, 135, 135, 0);
         color: #555;
     }
 </style>

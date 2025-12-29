@@ -1,5 +1,5 @@
 <template>
-    Inventory
+    <h2>Template de Formulario</h2>
 </template>
 
 <script>

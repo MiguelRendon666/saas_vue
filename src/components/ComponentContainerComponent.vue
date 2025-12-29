@@ -6,7 +6,7 @@
         <div class="ComponentContainer">
             <component v-if="currentComponent" :is="currentComponent" />
         </div>
-        <LoadingScreenComponent />
+        <!-- <LoadingScreenComponent /> -->
     </div>
 </template>
 
@@ -56,5 +56,6 @@ export default {
     padding-bottom: 2rem;
     box-sizing: border-box;
     position: relative;
+    background-color: #f5f5f5;
 }
 </style>
