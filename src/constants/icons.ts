@@ -6,6 +6,11 @@ import menuIcon from '@/assets/icons/menu.png'
 import noneIcon from '@/assets/icons/none.png'
 import pricelistIcon from '@/assets/icons/pricelist.png'
 import productsIcon from '@/assets/icons/products.png'
+import brandsIcon from '@/assets/icons/brands.png'
+import cashregisterIcon from '@/assets/icons/cashregister.png'
+import inventorymovementsIcon from '@/assets/icons/inventorymovements.png'
+import providerIcon from '@/assets/icons/provider.png'
+import rolpermissionsIcon from '@/assets/icons/rolpermissions.png'
 
 export const ICONS = {
   HOME: homeIcon,
@@ -15,7 +20,12 @@ export const ICONS = {
   MENU: menuIcon,
   NONE: noneIcon,
   PRICELIST: pricelistIcon,
-  PRODUCTS: productsIcon
+  PRODUCTS: productsIcon,
+  BRANDS: brandsIcon,
+  CASHREGISTER: cashregisterIcon,
+  INVENTORYMOVEMENTS: inventorymovementsIcon,
+  PROVIDER: providerIcon,
+  ROLPERMISSIONS: rolpermissionsIcon
 }
 
 export default ICONS

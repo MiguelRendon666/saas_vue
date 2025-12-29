@@ -4,7 +4,7 @@
             <button @click="toggleSidebar" :class="'push-side-nav-button' + (toggled_bar ? ' toggled' : '')">
                 <img :src="ICONS.MENU" alt="">
             </button>
-            <span>TopBar</span>
+            <span>{{ title }}</span>
         </div>
         <div class="top-right-side">
             <button :class="'profile_button' + (toggled_profile ? ' toggled' : '')">
@@ -20,6 +20,12 @@ import ICONS from '@/constants/icons';
 
 export default {
     name: 'TopBarComponent',
+    props: {
+        title: {
+            type: String,
+            default: 'Default'
+        }
+    },
     emits: ['toggle-sidebar'],
     methods: {
         toggleSidebar() {

@@ -5,18 +5,23 @@
     @changeViewSignal="handleChangeView"
      />
     <ComponentContainerComponent 
-    ref="ComponentContainer"
+    ref="componentContainer"
     @toggle-sidebar="handleToggleSidebar" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import ComponentContainerComponent from './components/ComponentContainerComponent.vue';
 import SideBarComponent from './components/SideBarComponent.vue';
 import type { Module } from './models/module';
+import { MODULES } from './constants/modules';
 
 const toggled = ref(true);
+
+onMounted(() => {
+  handleChangeView(MODULES[0]);
+});
 
 const componentContainer = ref<InstanceType<typeof ComponentContainerComponent> | null>(null);
 
@@ -25,7 +30,6 @@ const handleToggleSidebar = () => {
 };
 
 const handleChangeView = (module: Module) => {
-  console.log(componentContainer);
   componentContainer.value?.ChangeView(module);
 };
 </script>

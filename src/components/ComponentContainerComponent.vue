@@ -1,27 +1,38 @@
 <template>
     <div class="ViewContainer">
-        <TopBarComponent @toggle-sidebar="$emit('toggle-sidebar')" />
+        <TopBarComponent 
+        :title="title" 
+        @toggle-sidebar="$emit('toggle-sidebar')" />
         <div class="ComponentContainer">
-            <div v-for="i in 200" :key="i">body {{ i }}</div>
+            <component v-if="currentComponent" :is="currentComponent" />
         </div>
+        <LoadingScreenComponent />
     </div>
 </template>
 
 <script lang="ts">
+import LoadingScreenComponent from './LoadingScreenComponent.vue';
 import TopBarComponent from './TopBarComponent.vue';
 import { Module } from '@/models/module';
 
 export default {
     name: 'ComponentContainerComponent',
     components: {
-        TopBarComponent
+        TopBarComponent, LoadingScreenComponent
     },
     emits: ['toggle-sidebar'],
     methods: {
         ChangeView(module : Module) {
-            console.log('View changed to:', module.nombre);
+            this.title = module.nombre;
+            this.currentComponent = module.type;
         },
     },
+    data() {
+        return {
+            title: '',
+            currentComponent: null as any,
+        };
+    }
 }
 </script>
 
@@ -44,5 +55,6 @@ export default {
     padding-inline: 1rem;
     padding-bottom: 2rem;
     box-sizing: border-box;
+    position: relative;
 }
 </style>
