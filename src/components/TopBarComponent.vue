@@ -4,11 +4,16 @@
             <button @click="toggleSidebar" :class="'push-side-nav-button' + (toggled_bar ? ' toggled' : '')">
                 <img :src="ICONS.MENU" alt="">
             </button>
+            <div class="icon">
+                <img :src="icon" alt="">
+            </div>
             <span>{{ title }}</span>
         </div>
         <div class="top-right-side">
             <button :class="'profile_button' + (toggled_profile ? ' toggled' : '')">
-                <img :src="ICONS.AVATAR" alt="">
+                <div class="icon">
+                    <img :src="ICONS.AVATAR" alt="">
+                </div>
             </button>
             Chango
         </div>
@@ -24,6 +29,10 @@ export default {
         title: {
             type: String,
             default: 'Default'
+        },
+        icon: {
+            type: String,
+            default: ''
         }
     },
     emits: ['toggle-sidebar'],
@@ -53,9 +62,6 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    box-shadow: -1px 1px 5px -1px rgba(0,0,0,0.24);
-    -webkit-box-shadow: -1px 1px 5px -1px rgba(0,0,0,0.24);
-    -moz-box-shadow: -1px 1px 5px -1px rgba(0,0,0,0.24);
     position: relative;
     z-index: 1;
 }
@@ -96,5 +102,13 @@ export default {
     align-items: center;
     gap: 10px;
     font-weight: bold;
+}
+
+.topbar .icon{
+    height: 100%;
+}
+
+.topbar .icon img{
+    height: 100%;
 }
 </style>

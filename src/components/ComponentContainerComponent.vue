@@ -1,7 +1,8 @@
 <template>
     <div class="ViewContainer">
         <TopBarComponent 
-        :title="title" 
+        :title="title",
+        :icon="icon"
         @toggle-sidebar="$emit('toggle-sidebar')" />
         <div class="ComponentContainer">
             <component v-if="currentComponent" :is="currentComponent" />
@@ -11,6 +12,7 @@
 </template>
 
 <script lang="ts">
+import { markRaw } from 'vue';
 import LoadingScreenComponent from './LoadingScreenComponent.vue';
 import TopBarComponent from './TopBarComponent.vue';
 import { Module } from '@/models/module';
@@ -24,13 +26,15 @@ export default {
     methods: {
         ChangeView(module : Module) {
             this.title = module.nombre;
-            this.currentComponent = module.type;
+            this.currentComponent = markRaw(module.type);
+            this.icon = module.icon;
         },
     },
     data() {
         return {
             title: '',
             currentComponent: null as any,
+            icon: '',
         };
     }
 }
@@ -45,6 +49,9 @@ export default {
     max-height: 100vh;
     position: relative;
     z-index: 1;
+    padding-bottom: 0.5rem;
+    padding-right: 0.5rem;
+    box-sizing: border-box;
 }
 .ComponentContainer {
     width: 100%;
@@ -54,8 +61,9 @@ export default {
     padding-top: 1rem;
     padding-inline: 1rem;
     padding-bottom: 2rem;
-    box-sizing: border-box;
     position: relative;
     background-color: #f5f5f5;
+    border-radius: 1rem;
+    box-sizing: border-box;
 }
 </style>

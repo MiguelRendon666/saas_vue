@@ -58,9 +58,6 @@ export default {
     height: 100%;
     max-height: 100vh;
     transition: 0.5s ease;
-    box-shadow: 3px 50px 5px -1px rgba(0,0,0,0.20);
-    -webkit-box-shadow: 3px 50px 5px -1px rgba(0,0,0,0.20);
-    -moz-box-shadow: 3px 50px 5px -1px rgba(0,0,0,0.20);
     position: relative;
     z-index: 100;
     background-color: white;
